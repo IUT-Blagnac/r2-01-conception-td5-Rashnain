@@ -1,0 +1,4 @@
+.vscode
+.asciidoctor
+Gemfile.lock
+*.html
