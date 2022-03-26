@@ -1,0 +1,68 @@
+```plantuml
+
+@startuml dc
+
+hide circle
+
+skinparam classAttributeIconSize 0
+
+
+
+class Direction {
+    - idDirection : String 
+    - nom : String
+    - prenom : String
+    setAffectation()
+}
+
+class RessourcesHumaines {
+    - idRessourcesHumaines : String 
+    - nom : String
+    - prenom : String
+}
+
+class Comptable {
+    - idComptable : String
+    - nom : String
+    - prenom : String
+    getPayeArtisan()
+}
+
+class Artisan {
+    - idArtisan : String
+    - nom : String
+    - prenom : String
+    - idAffectation : String
+    - salaireHoraire : double
+    - coordonnees : String
+    getAffectation()
+    recevoirPaye()
+}
+
+class Chantier {
+    - idChantier : String
+    - dateDebut : Date
+    - dateFin : Date
+    - adresse : String
+    getArtisans()
+}
+
+Direction "1" -- "1..*" Artisan : Emploie/Affecte
+Direction "1" -- "1..*" RessourcesHumaines : Emploie
+Direction "1" -- "1..*" Comptable : Emploie
+Direction "1" -- "1..*" Chantier : Gérer
+
+RessourcesHumaines "1" -- "*" Artisan : Gérer
+RessourcesHumaines "1" -- "*" Comptable : Gérer
+
+Comptable "*" -- "1" Artisan : Calcul du salaire
+Comptable "*" -- "1" Direction : Calcul du salaire
+Comptable "*" -- "1" RessourcesHumaines : Calcul du salaire
+
+Artisan "*" -- "*" Chantier : Est affecté
+
+
+
+@enduml
+
+```

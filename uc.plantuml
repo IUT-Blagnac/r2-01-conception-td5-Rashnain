@@ -1,0 +1,34 @@
+```plantuml
+
+@startuml uc
+
+
+
+usecase c as "Gérer chantiers"
+usecase g as "Gérer artisans"
+usecase a as "Affecter des artisans \n à un chantier"
+usecase s as "Calculer le salaire \n des artisans"
+usecase pp as "Envoyer les payes"
+usecase p as "Se faire payé"
+
+actor Direction
+actor RessourcesHumaines
+actor Comptable
+actor Employé
+
+p -[hidden]-> s
+s -[hidden]-> a
+a -[hidden]-> g
+
+Direction -> c
+Direction -> a
+RessourcesHumaines -> g
+s -> pp
+Comptable -> s
+Employé -> p
+
+
+
+@enduml
+
+```
